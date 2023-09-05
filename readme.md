@@ -6,7 +6,7 @@ SPRING BOOT 6년만에 처음함
 
 Single Sign On 서비스 만들기
 
-![SSO-SERVICE](./docs/sso.png)
+![SSO-SERVICE](./docs/imgs/sso.png)
 
 ## TODO
 
