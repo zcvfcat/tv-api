@@ -1,0 +1,19 @@
+# Postgresql
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sso
+    username: zcvfcat
+    password: zcvfcat
+
+# hibernate setting
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: auth
+        use_sql_comments: true
+        format_sql: true
+        show_sql: true
+    # hibernate:
+      # ddl-auto: create
+    # generate-ddl: true

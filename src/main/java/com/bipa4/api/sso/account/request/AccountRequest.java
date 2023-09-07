@@ -1,4 +1,4 @@
-package com.bipa4.api.sso.account.dto;
+package com.bipa4.api.sso.account.request;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class AccountSignDto {
+public class AccountRequest {
   // 식별자 (identifier)
   @Email(message = "메일 입력은 필수 입니다.")
   @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,6}$", message = "이메일 형식에 맞지 않습니다.")
@@ -25,4 +25,8 @@ public class AccountSignDto {
   @NotEmpty(message = "비밀번호 입력은 필수 입니다.")
   @Size(min = 5, message = "비밀번호는 최소 5자 이상이어야 합니다.")
   private String password;
+
+  @NotEmpty(message = "이름 입력은 필수 입니다.")
+  @Size(min = 2, message = "두 자리 이상이어야 합니다.")
+  private String userName;
 }

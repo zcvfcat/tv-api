@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import com.bipa4.api.sso.account.dto.AccountDto;
+import com.bipa4.api.sso.account.request.AccountRequest;
 import com.bipa4.api.sso.error.ConflictEmail;
 
 class AccountServiceTest {
@@ -25,7 +25,7 @@ class AccountServiceTest {
   @Test
   void testSignUp_NewAccount_Success() {
     // 가상의 계정 정보
-    AccountDto accountDto = new AccountDto("test@example.com", "password123", "John Doe");
+    AccountRequest accountDto = new AccountRequest("test@example.com", "password123", "John Doe");
 
     // repository에서 계정이 없을 때를 가정하여 반환
     Mockito.when(accountRepository.findById(accountDto.getEmail())).thenReturn(Optional.empty());
@@ -41,7 +41,7 @@ class AccountServiceTest {
   @Test
   void testSignUp_ExistingAccount_ConflictEmail() {
     // 가상의 계정 정보
-    AccountDto accountDto = new AccountDto("test@example.com", "password123", "John Doe");
+    AccountRequest accountDto = new AccountRequest("test@example.com", "password123", "John Doe");
 
     // repository에서 이미 계정이 존재할 때를 가정하여 반환
     Mockito.when(accountRepository.findById(accountDto.getEmail()))
