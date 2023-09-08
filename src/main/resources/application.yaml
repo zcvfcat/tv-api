@@ -1,19 +1,46 @@
-# Postgresql
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/sso
-    username: zcvfcat
-    password: zcvfcat
+  h2:
+    console:
+      enabled: true
 
-# hibernate setting
+  datasource:
+    url: jdbc:h2:mem:testdb;NON_KEYWORDS=USER
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
   jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop # SessionFactoryr가 시작될 때 Drop, Create, Alter 종료될 때 Drop
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        default_schema: auth
-        use_sql_comments: true
         format_sql: true
-        show_sql: true
-    # hibernate:
-      # ddl-auto: create
-    # generate-ddl: true
+        show_sql: ture
+    defer-datasource-initialization: true
+
+jwt:
+  header: Authorization
+  #HS512 알고리즘을 사용할 것이기 때문에 512bit, 즉 64byte 이상의 secret key를 사용해야 한다.
+  secret: a2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbQ==
+  token-validity-in-seconds: 86400 # ttl (초)
+# # Postgresql
+# spring:
+#   datasource:
+#     url: jdbc:postgresql://localhost:5432/tv
+#     username: zcvfcat
+#     password: zcvfcat
+#     driver-class-name: org.postgresql.Driver
+
+# # hibernate setting
+#   jpa:
+#     properties:
+#       hibernate:
+#         dialect: org.hibernate.dialect.PostgreSQLDialect
+#         default_schema: base
+#         use_sql_comments: true
+#         format_sql: true
+#         show_sql: true
+#     # hibernate:
+#     #   ddl-auto: create
+#     # generate-ddl: true

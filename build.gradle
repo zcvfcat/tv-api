@@ -21,18 +21,31 @@ repositories {
 	mavenCentral()
 }
 
+// 용어 정리
+// dependencies; 외부 모듈 종속성 
+// implementation; 컴파일에 필요한 종속성
+// annotationProcessor; 어노테이션 처리기, 소스 해킹해서 코드 덧붙여줌
+// compileOnly; 이놈도 소스 해킹해서 덧붙여주네;;
+
 dependencies {
-	implementation 'org.flywaydb:flyway-core'																			// db migration
+	// implementation 'org.flywaydb:flyway-core'																	// db migration
 	implementation group: 'org.postgresql', name:'postgresql', version: '42.2.19' // db
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'	// jwt
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'										// api 명세
+	implementation 'org.springframework.boot:spring-boot-starter-security'				// security
 	implementation 'org.springframework.boot:spring-boot-starter-validation'			// 무결성 검증
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'				// ORM
 	implementation 'org.springframework.boot:spring-boot-starter-web'							// 프레임워크
-	compileOnly 'org.projectlombok:lombok'																				// 보일러플레이트 - 클래스 해킹
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'								// hot-reload
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	compileOnly 'org.projectlombok:lombok'																				// 보일러플레이트 - 클래스 해킹
+
+	runtimeOnly 'com.h2database:h2'																								// 로컬 메모리 DB
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
 }
 
 tasks.named('test') {
