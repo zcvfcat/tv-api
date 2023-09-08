@@ -1,0 +1,19 @@
+
+### http://localhost:8080/h2-console
+### JDBC URL : jdbc:h2:mem:testdb;NON_KEYWORDS=USER
+### insert into users (USER_ID, USERNAME, PASSWORD, NICKNAME, ACTIVATED) values (1, 'admin', '$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi', 'admin', 1);
+### 테스트 가능
+POST http://localhost:8080/api/authenticate HTTP/1.1
+Content-Type: application/json
+
+{"username":"admin","password":"admin"}
+
+### 이후로 안되네;;
+
+@jwt=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiIiLCJleHAiOjE2OTQyODcxMzh9.MBMYuAtG75IWYSW1ejhUm92ETriJPdGGUxebq-gyvyTPo8AmvuRuUTHyNsAO98ZRf1IrikN-oT1UJ8J4HclbTQ
+
+GET http://localhost:8080/api/user/admin HTTP/1.1
+Authorization: bearer {{jwt}}
+Content-Type: application/json
+
+{"username":"admin","nickname":"admin", "authorities":[{"authroityName":"ROLE_ADMIN"},{"authroityName":"ROLE_USER"}]}
